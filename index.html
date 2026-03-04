@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Inn</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand" id="hidden-admin-trigger" style="cursor: pointer;">
+            <svg viewBox="0 0 24 24" fill="none" class="brand-logo" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M5 21V7L12 3L19 7V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M9 21V11H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Modern Inn
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-item active" data-target="booking-page">Book a Room</a>
+            <a href="#" class="nav-item" data-target="checkin-page" id="nav-checkin">Self Check-In / Out</a>
+        </div>
+    </nav>
+
+    <!-- Main Views -->
+    <main class="container">
+
+        <!-- Landing / Booking Page -->
+        <section id="booking-page" class="view-panel active">
+            <!-- Big Hero Image Background -->
+            <div class="hero-section" style="background-image: url('image/modern_hotel_exterior_1772553416372.png')">
+                <div class="hero-overlay">
+                    <h1>Welcome to Modern Inn</h1>
+                    <p>Experience unmatched comfort and elegant design in the heart of the city.</p>
+                    <button class="hero-btn"
+                        onclick="document.getElementById('room-grid-section').scrollIntoView({behavior: 'smooth'})">View
+                        Availability</button>
+                </div>
+            </div>
+
+            <div id="room-grid-section" class="room-grid-container">
+                <h2 class="section-title">Select Your Stay</h2>
+                <div class="room-grid">
+                    <!-- Rendered heavily by JS -->
+                </div>
+            </div>
+
+            <!-- Nearby Attractions Section -->
+            <div id="attractions-section" class="attractions-container">
+                <h2 class="section-title">Discover Nearby</h2>
+                <p style="text-align: center; color: var(--text-secondary); margin-bottom: 32px; font-size: 16px;">
+                    Explore beautiful landmarks just steps away from Modern Inn.</p>
+                <div class="attractions-grid">
+                    <div class="attraction-card">
+                        <div class="attraction-img"
+                            style="background-image: url('image/202410154dead1cdb48244f035dce8790aa4ae50101434.jpg')">
+                        </div>
+                        <div class="attraction-body">
+                            <h3>Friendship Bridge (มิตรภาพ)</h3>
+                            <p>A magnificent symbol of connection crossing the deep waters, offering stunning sunset
+                                views just 15 minutes away.</p>
+                        </div>
+                    </div>
+                    <div class="attraction-card">
+                        <div class="attraction-img" style="background-image: url('image/MRC_mekhong.jpg')">
+                        </div>
+                        <div class="attraction-body">
+                            <h3>Mekong River (แม่น้ำโขง)</h3>
+                            <p>Stroll along the majestic Mekong River promenade. Perfect for a relaxing evening walk or
+                                enjoying local riverside cafes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Check-in Page -->
+        <section id="checkin-page" class="view-panel" style="padding: 48px 24px;">
+            <div class="checkin-container">
+                <header class="app-header">
+                    <div class="logo-box">
+                        <svg class="logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h1>Check-In & Check-Out</h1>
+                    <p>Retrieve your booking to manage your stay seamlessly.</p>
+                </header>
+
+                <section id="search-view" class="sub-panel active">
+                    <form id="checkin-form" class="checkin-form">
+                        <div class="input-group">
+                            <input type="text" id="credential-input" placeholder=" " required autocomplete="off">
+                            <label for="credential-input">Passport Number or Citizen ID</label>
+                            <div class="input-line"></div>
+                        </div>
+
+                        <div class="error-msg" id="error-message">
+                            Credentials not found. Please review and try again.
+                        </div>
+
+                        <button type="submit" class="btn-primary" id="submit-btn">
+                            <span class="btn-text">Retrieve Booking</span>
+                            <span class="spinner" style="display: none;">
+                                <svg viewBox="0 0 50 50">
+                                    <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+
+                    <div class="demo-hints">
+                        <p>Hint: Use ID <b>1324341343</b> or <b>1129901948919</b></p>
+                    </div>
+                </section>
+
+                <section id="result-view" class="sub-panel">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <h2>Booking Active</h2>
+                    <p class="welcome-text">Welcome, <span id="guest-name">Guest</span>.</p>
+
+                    <div class="info-card">
+                        <div class="info-row highlight-row">
+                            <span class="label">Room Number</span>
+                            <span class="value room-value" id="res-room">--</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Keycard Password</span>
+                            <span class="value pwd-value" id="res-pwd">--</span>
+                        </div>
+                        <div class="info-divider"></div>
+                        <div class="info-row">
+                            <span class="label">Check-In</span>
+                            <span class="value" id="res-checkin">--</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="label">Target Check-Out</span>
+                            <span class="value" id="res-checkout">--</span>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-top: 24px;">
+                        <button type="button" class="btn-checkout" id="checkout-btn">Check-Out Now</button>
+                        <button type="button" class="btn-secondary" style="margin-top: 0; width: 50%"
+                            id="finish-btn">Done</button>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Hidden Employee Backend Page -->
+        <section id="admin-page" class="view-panel">
+            <div class="admin-wrapper">
+
+                <!-- Sidebar Navigation -->
+                <aside class="admin-sidebar">
+                    <div class="admin-brand">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" class="brand-logo"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 21H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            <path d="M5 21V7L12 3L19 7V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M9 21V11H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        SHMS
+                    </div>
+                    <nav class="admin-nav">
+                        <a class="admin-nav-item active" data-admin-target="admin-dashboard">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            Dashboard
+                        </a>
+                        <a class="admin-nav-item" data-admin-target="admin-room-mgt">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                            </svg>
+                            Room Management
+                        </a>
+                        <a class="admin-nav-item" data-admin-target="admin-housekeeper">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
+                                </path>
+                            </svg>
+                            Housekeeper
+                        </a>
+                        <a class="admin-nav-item" data-admin-target="admin-procurement">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v2"></path>
+                                <path d="M3 14v4a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 18v-4"></path>
+                                <path d="M12 22V12"></path>
+                            </svg>
+                            Procurement
+                        </a>
+                        <a class="admin-nav-item" data-admin-target="admin-employee">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            Employee Mgt
+                        </a>
+                    </nav>
+                    <div class="admin-user-role">
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px;">Current Role
+                        </div>
+                        <select id="role-selector">
+                            <option value="admin">Administrator</option>
+                            <option value="housekeeping">Housekeeping Supervisor</option>
+                            <option value="inside">Inside Staff</option>
+                        </select>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="admin-main">
+
+                    <header class="admin-topbar">
+                        <div class="topbar-title" id="topbar-title">Dashboard</div>
+                        <div class="topbar-actions">
+                            <button class="btn-secondary"
+                                style="padding: 8px 16px; border: 1px solid var(--error-color); color: var(--error-color); border-radius: 8px;"
+                                id="exit-admin-btn">Log Out</button>
+                        </div>
+                    </header>
+
+                    <div class="admin-content-area">
+
+                        <!-- Dashboard View -->
+                        <div id="admin-dashboard" class="admin-view-panel active">
+                            <div class="dashboard-stats">
+                                <div class="stat-card">
+                                    <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                        </svg></div>
+                                    <div class="stat-info">
+                                        <h4>50</h4>
+                                        <p>Total Rooms</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="color: #4CAF50; background: rgba(76, 175, 80, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>9</h4>
+                                        <p>Vacant</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="color: #2196F3; background: rgba(33, 150, 243, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>8</h4>
+                                        <p>Occupied</p>
+                                    </div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-icon" style="color: #FFC107; background: rgba(255, 193, 7, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="2" x2="12" y2="22"></line>
+                                            <line x1="17" y1="5" x2="17" y2="22"></line>
+                                            <line x1="7" y1="5" x2="7" y2="22"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>11</h4>
+                                        <p>Require Cleaning</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: grid; grid-template-columns: 1fr 400px; gap: 24px;">
+                                <div class="panel-white">
+                                    <h3
+                                        style="margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                                        Central Database Sync (G-Sheets)</h3>
+                                    <iframe
+                                        src="https://docs.google.com/spreadsheets/d/1SXa39r7dmYXQlq45RyUIuMkLXNyEfK3k1s6JFebFSKk/edit?gid=1497005060#gid=1497005060"
+                                        width="100%" height="400" frameborder="0"
+                                        style="border: 1px solid var(--glass-border); border-radius: 12px;"></iframe>
+                                </div>
+                                <div class="panel-white">
+                                    <h3
+                                        style="margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;">
+                                        Live Hospitality Feed <span class="live-indicator"></span></h3>
+                                    <div class="feed-logs" id="feed-logs">
+                                        <!-- Populated heavily by JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Room Management View -->
+                        <div id="admin-room-mgt" class="admin-view-panel">
+                            <div class="panel-white"
+                                style="margin-bottom: 24px; display: flex; justify-content: space-between; padding: 16px 24px;">
+                                <input type="text" placeholder="Search parameters..."
+                                    style="padding: 8px 16px; border-radius: 8px; border: 1px solid #ccc; width: 300px;">
+                                <button class="btn-primary"
+                                    style="width: auto; padding: 8px 24px; border-radius: 8px;">+ Add Room</button>
+                            </div>
+                            <div class="admin-rooms-grid" id="admin-rooms-container">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Placeholder Views -->
+                        <div id="admin-housekeeper" class="admin-view-panel">
+                            <div class="panel-white">
+                                <h3>Housekeeping Tasks</h3>
+                                <p style="color: var(--text-secondary); margin-top: 12px;">Manage daily cleaning
+                                    schedules, linen changes, and room inspections.</p>
+                                <!-- Fake List -->
+                                <div
+                                    style="margin-top: 24px; border: 1px solid var(--glass-border); border-radius: 8px; padding: 16px;">
+                                    Room 101 - Checkout Cleaning (Pending)</div>
+                                <div
+                                    style="margin-top: 12px; border: 1px solid var(--glass-border); border-radius: 8px; padding: 16px;">
+                                    Room 205 - Deep Cleaning (In Progress)</div>
+                                <div
+                                    style="margin-top: 12px; border: 1px solid var(--glass-border); border-radius: 8px; padding: 16px;">
+                                    Room 402 - Replenish Towels (Completed)</div>
+                            </div>
+                        </div>
+
+                        <div id="admin-procurement" class="admin-view-panel">
+                            <div class="panel-white">
+                                <h3>Procurement Management</h3>
+                                <p style="color: var(--text-secondary); margin-top: 12px;">Track inventory, order
+                                    supplies, and manage vendor relationships.</p>
+                            </div>
+                        </div>
+
+                        <div id="admin-employee" class="admin-view-panel">
+                            <div class="panel-white">
+                                <h3>Employee Directory</h3>
+                                <p style="color: var(--text-secondary); margin-top: 12px;">Manage staff schedules,
+                                    roles, and performance metrics.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </main>
+            </div>
+        </section>
+    </main>
+
+    <!-- Room Details Modal -->
+    <div class="modal-backdrop" id="room-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-image" style="background-image: url('image/modern_hotel_room_1772553450378.png')">
+            </div>
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h2 id="modal-room-type">Room Type</h2>
+                    <div class="modal-price" id="modal-room-price">฿850 <span
+                            style="font-size: 14px; color: var(--text-secondary); font-weight: 500;">/ night</span>
+                    </div>
+                </div>
+
+                <div class="modal-tags">
+                    <span class="tag"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z">
+                            </path>
+                        </svg> Highly Recommended</span>
+                </div>
+
+                <ul class="modal-features">
+                    <li><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9" />
+                                <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6" />
+                            </svg> Room Size:</strong> <span id="modal-room-size">32 sqm</span></li>
+                    <li><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z">
+                                </path>
+                                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                            </svg> Bed Type:</strong> <span id="modal-room-bed">1 King Bed</span></li>
+                    <li><strong><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+                                <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+                                <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+                                <line x1="12" y1="20" x2="12.01" y2="20"></line>
+                            </svg> View / WiFi:</strong> Free High-Speed WiFi, City View</li>
+                </ul>
+
+                <button class="btn-primary" style="margin-top: 24px;"
+                    onclick="alert('Proceeding to booking portal...')">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Floating Element -->
+    <div id="ai-chat-btn" class="chat-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div id="ai-chat-window" class="chat-window">
+        <div class="chat-header">
+            <div>
+                <strong>Modern Inn AI</strong>
+                <div style="font-size: 12px; opacity: 0.8; font-weight: 400">Online</div>
+            </div>
+            <button class="chat-close" id="chat-close">&times;</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai-message">Hello! I'm the Modern Inn virtual assistant. How can I help you regarding
+                your stay today?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a basic question..." />
+            <button id="chat-send">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" width="16" height="16">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Social & Location Links -->
+    <div class="social-links">
+        <a href="https://lin.ee/lwgExvl" target="_blank" title="Contact us on LINE">
+            <img src="image/LINE_logo.svg.png" alt="LINE">
+        </a>
+        <a href="https://maps.app.goo.gl/H8dhnWRZCo3XuMy36" target="_blank" title="View on Google Maps">
+            <img src="image/1160306.png" alt="Google Maps Pin">
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
