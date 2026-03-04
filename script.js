@@ -1,17 +1,21 @@
+const today = new Date();
+const tomorrow = new Date(today);
+tomorrow.setDate(tomorrow.getDate() + 1);
+
 let MOCK_RESERVATIONS = {
-    "P1234567": {
-        name: "Alex Johnson",
-        room: "402",
-        keycard_pin: "8492",
-        checkin_date: "2026-03-03T15:00:00",
-        checkout_date: "2026-03-05T11:00:00"
+    "1324341343": {
+        name: "Pitinach chutiprachakij",
+        room: "50",
+        keycard_pin: "7713",
+        checkin_date: today.toISOString(),
+        checkout_date: tomorrow.toISOString()
     },
-    "1234567890123": {
-        name: "Maria Garcia",
-        room: "12B",
-        keycard_pin: "1159",
-        checkin_date: "2026-03-04T15:00:00",
-        checkout_date: "2026-03-10T11:00:00"
+    "1129901948919": {
+        name: "Pitinach chutiprachakij",
+        room: "50",
+        keycard_pin: "7713",
+        checkin_date: today.toISOString(),
+        checkout_date: tomorrow.toISOString()
     }
 };
 
@@ -92,6 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
         void adminPage.offsetWidth;
         adminPage.classList.add("active");
 
+        const socialLinks = document.querySelector(".social-links");
+        if (socialLinks) socialLinks.style.display = "none";
+
         startLiveFeed();
     };
 
@@ -106,6 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
         void homePage.offsetWidth;
         homePage.classList.add("active");
         document.querySelector("[data-target='booking-page']").classList.add("active");
+
+        const socialLinks = document.querySelector(".social-links");
+        if (socialLinks) socialLinks.style.display = "flex";
     };
 
     adminTrigger.addEventListener("click", () => {
@@ -490,10 +500,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const GEMINI_API_KEY = "AIzaSyA0Euo7JYCXppW__4obImaRbkgYFNM1mFE";
+    const GEMINI_API_KEY = "AIzaSyDIUYsz4usQEI4Wc8VjQ3sHjPtvQXGsZzQ";
 
     const fetchGeminiResponse = async (query) => {
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+
+        const systemPrompt = "You are the Modern Inn Virtual Assistant. You help guests exclusively with hotel-related questions. The hotel location is at Google Maps (https://maps.app.goo.gl/H8dhnWRZCo3XuMy36). Contact LINE at @906vqhos or via link (https://lin.ee/lwgExvl). Keep responses extremely concise (1-3 sentences max). Tone should be highly polite and welcoming.\n\nUser Question: ";
 
         try {
             const response = await fetch(endpoint, {
@@ -502,18 +514,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    system_instruction: {
-                        parts: [
-                            { text: "You are the Modern Inn Virtual Assistant. You help guests exclusively with hotel-related questions. Keep responses extremely concise (1-3 sentences max). Tone should be highly polite and welcoming." }
-                        ]
-                    },
                     contents: [
-                        { parts: [{ text: query }] }
+                        {
+                            role: "user",
+                            parts: [{ text: systemPrompt + query }]
+                        }
                     ]
                 })
             });
 
             if (!response.ok) {
+                const errorText = await response.text();
+                console.error("Gemini API Error details:", errorText);
                 throw new Error("API Connection Failed");
             }
 
