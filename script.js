@@ -537,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // 4. Default Fallback for Public GitHub Version
-        return "⚠️ **Public Demo Mode**\nThe live Gemini AI integration is currently disabled in this public repository for API security reasons.\n\nI can only answer questions about:\n* **Room Availability**\n* **Breakfast Time**\n* **Self Check-in**\n\nFor anything else, please contact human staff on LINE!";
+        return "⚠️ **Public Demo Mode**\nThe live Gemini AI integration is currently disabled in this public repository for API security reasons.\n\nI can only answer questions about:\n* **Room Availability**\n* **Breakfast Time**\n* **Self Check-in**\n\nFor anything else, please contact our human staff directly!\n* **LINE ID:** @906vqhos ([Link](https://lin.ee/lwgExvl))\n* **Phone:** +669554135055\n* **Email:** [Manatsanan_A@Moderninn.com](mailto:Manatsanan_A@Moderninn.com)";
     };
 
     const handleChat = async () => {
